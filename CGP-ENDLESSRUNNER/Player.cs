@@ -32,27 +32,51 @@ namespace CGP_ENDLESSRUNNER
             m_player.Top = 400;
 
             OnGameOver += HandleDeath;
+            GameWindow.OnPlayerJump += HandlePlayerJump;
             GameWindow.OnGameReset += ResetPlayer;
         }
 
-        public void HandlePlayerMovement()
+        public void HandlePlayerJump(bool action)
         {
-            m_player.Top += m_currentJumpSpeed;
+            IsJumping = action;
 
-            if (IsJumping == true && m_currentForce < 0)
+            //if (m_currentForce < 0)
+            //{
+            //    IsJumping = false;
+            //    return;
+            //}
+
+            //if (IsJumping)
+            //{
+            //    m_currentJumpSpeed = -m_defaultJumpSpeed;
+            //    m_currentForce -= 1; ;
+            //}
+            //else
+            //{
+            //    m_currentJumpSpeed = m_defaultJumpSpeed;
+            //}
+
+            if (IsJumping && m_currentForce < 0)
             {
                 IsJumping = false;
             }
 
-            if (IsJumping == true)
+            if (IsJumping)
             {
-                m_currentJumpSpeed = -m_defaultJumpSpeed;
+                m_player.Top = m_player.Top + m_currentJumpSpeed;
                 m_currentForce -= 1;
             }
-            else
+
+            if (!IsJumping)
             {
-                m_currentJumpSpeed = m_defaultJumpSpeed;
+                m_currentJumpSpeed = m_defaultForce;
             }
+
+        }
+
+        public void HandleGravity()
+        {
+            m_player.Top += m_currentJumpSpeed;
         }
 
         public void HandleCollision()

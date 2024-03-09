@@ -9,6 +9,7 @@ namespace CGP_ENDLESSRUNNER
         private Player m_player;
         private Obstacle m_obstacle;
 
+        public static event Action<bool> OnPlayerJump;
         public static event Action OnGameReset;
 
         public GameWindow()
@@ -25,7 +26,7 @@ namespace CGP_ENDLESSRUNNER
             m_gameManager.ShowScore();
             m_gameManager.HandleSpeedIncrease();
 
-            m_player.HandlePlayerMovement();
+            m_player.HandleGravity();
             m_player.HandleCollision();
 
             m_obstacle.HandleObstacleMovement();
@@ -34,11 +35,9 @@ namespace CGP_ENDLESSRUNNER
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Space
-                && m_player.IsGrounded
                 && !m_player.IsJumping)
             {
-                m_player.IsGrounded = false;
-                m_player.IsJumping = true;
+                OnPlayerJump?.Invoke(true);
             }
         }
 
@@ -46,7 +45,7 @@ namespace CGP_ENDLESSRUNNER
         {
             if (m_player.IsGrounded)
             {
-                m_player.IsJumping = false;
+                OnPlayerJump?.Invoke(false);
             }
 
             if (e.KeyCode == Keys.R

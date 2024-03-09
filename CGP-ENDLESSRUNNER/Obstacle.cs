@@ -34,8 +34,8 @@ namespace CGP_ENDLESSRUNNER
 
                     if (x.Left < -100)
                     {
-                        x.Left = m_form.ClientSize.Width + random.Next(200, 600) + (x.Width * 50);
                         OnScoreIncrease?.Invoke();
+                        x.Left = m_form.ClientSize.Width + random.Next(200, 600) + (x.Width * 50);
                     }
                 }
             }
