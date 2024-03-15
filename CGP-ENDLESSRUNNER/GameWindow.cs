@@ -34,8 +34,7 @@ namespace CGP_ENDLESSRUNNER
 
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Space
-                && !m_player.IsJumping)
+            if (e.KeyCode == Keys.Space)
             {
                 OnPlayerJump?.Invoke(true);
             }
@@ -43,7 +42,7 @@ namespace CGP_ENDLESSRUNNER
 
         private void KeyIsUp(object sender, KeyEventArgs e)
         {
-            if (m_player.IsGrounded)
+            if (e.KeyCode == Keys.Space)
             {
                 OnPlayerJump?.Invoke(false);
             }

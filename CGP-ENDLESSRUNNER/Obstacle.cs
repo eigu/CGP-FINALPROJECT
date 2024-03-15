@@ -20,6 +20,8 @@ namespace CGP_ENDLESSRUNNER
 
             m_currentSpeed = m_defaultSpeed;
 
+            ResetObstacle();
+
             GameManager.OnObstacleSpeedIncrease += HandleSpeedIncrease;
             GameWindow.OnGameReset += ResetObstacle;
         }

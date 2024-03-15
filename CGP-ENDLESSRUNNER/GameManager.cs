@@ -20,6 +20,8 @@ namespace CGP_ENDLESSRUNNER
             m_textScore = textScore;
             m_gameTimer = timer;
 
+            ResetGame();
+
             GameWindow.OnGameReset += ResetGame;
             Obstacle.OnScoreIncrease += HandleScoreIncrease;
             Player.OnGameOver += HandleGameOver;

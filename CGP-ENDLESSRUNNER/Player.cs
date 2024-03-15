@@ -7,14 +7,15 @@ namespace CGP_ENDLESSRUNNER
     public class Player
     {
         private Form m_form;
-
         private PictureBox m_player;
 
-        private int m_defaultForce = 12;
-        private int m_currentForce;
 
-        private int m_defaultJumpSpeed = 12;
+        private const int m_defaultJumpSpeed = 10;
         private int m_currentJumpSpeed;
+
+        private const int m_maxJumpForce = 1;
+        private const int m_increaseJumpForce = 1;
+        private int m_currentJumpForce = 0;
 
         public bool IsJumping = false;
         public bool IsGrounded = false;
@@ -26,10 +27,7 @@ namespace CGP_ENDLESSRUNNER
             m_form = form;
             m_player = player;
 
-            m_currentForce = m_defaultForce;
-            m_currentJumpSpeed = m_defaultJumpSpeed;
-
-            m_player.Top = 400;
+            ResetPlayer();
 
             OnGameOver += HandleDeath;
             GameWindow.OnPlayerJump += HandlePlayerJump;
@@ -40,43 +38,26 @@ namespace CGP_ENDLESSRUNNER
         {
             IsJumping = action;
 
-            //if (m_currentForce < 0)
-            //{
-            //    IsJumping = false;
-            //    return;
-            //}
-
-            //if (IsJumping)
-            //{
-            //    m_currentJumpSpeed = -m_defaultJumpSpeed;
-            //    m_currentForce -= 1; ;
-            //}
-            //else
-            //{
-            //    m_currentJumpSpeed = m_defaultJumpSpeed;
-            //}
-
-            if (IsJumping && m_currentForce < 0)
+            if (IsJumping && m_currentJumpForce > m_maxJumpForce)
             {
                 IsJumping = false;
             }
-
+            
             if (IsJumping)
             {
-                m_player.Top = m_player.Top + m_currentJumpSpeed;
-                m_currentForce -= 1;
+                m_currentJumpSpeed = -m_defaultJumpSpeed;
+                m_currentJumpForce += m_increaseJumpForce;
             }
-
-            if (!IsJumping)
-            {
-                m_currentJumpSpeed = m_defaultForce;
-            }
-
         }
 
         public void HandleGravity()
         {
             m_player.Top += m_currentJumpSpeed;
+
+            if (!IsJumping)
+            {
+                m_currentJumpSpeed = m_defaultJumpSpeed;
+            }
         }
 
         public void HandleCollision()
@@ -87,10 +68,8 @@ namespace CGP_ENDLESSRUNNER
                 {
                     if (m_player.Bottom > x.Top)
                     {
-                        m_currentForce = m_defaultForce;
+                        m_currentJumpForce = 0;
                         m_currentJumpSpeed = 0;
-
-                        IsGrounded = true;
 
                         m_player.Top = x.Top - m_player.Height;
                     }
@@ -113,12 +92,11 @@ namespace CGP_ENDLESSRUNNER
 
         public void ResetPlayer()
         {
-            m_currentForce = m_defaultForce;
-            m_currentJumpSpeed = m_defaultJumpSpeed;
-
-            m_player.Top = 400;
-
             IsJumping = false;
+
+            m_currentJumpForce = 0;
+
+            m_player.Top = 420;
 
             m_player.Image = CGP_ENDLESSRUNNER.Properties.Resources.running;
         }
