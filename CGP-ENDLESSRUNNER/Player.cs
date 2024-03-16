@@ -9,11 +9,10 @@ namespace CGP_ENDLESSRUNNER
         private Form m_form;
         private PictureBox m_player;
 
-
-        private const int m_defaultJumpSpeed = 10;
+        private const int m_defaultJumpSpeed = 16;
         private int m_currentJumpSpeed;
 
-        private const int m_maxJumpForce = 1;
+        private const int m_maxJumpForce = 8;
         private const int m_increaseJumpForce = 1;
         private int m_currentJumpForce = 0;
 
@@ -37,22 +36,23 @@ namespace CGP_ENDLESSRUNNER
         public void HandlePlayerJump(bool action)
         {
             IsJumping = action;
-
-            if (IsJumping && m_currentJumpForce > m_maxJumpForce)
-            {
-                IsJumping = false;
-            }
-            
-            if (IsJumping)
-            {
-                m_currentJumpSpeed = -m_defaultJumpSpeed;
-                m_currentJumpForce += m_increaseJumpForce;
-            }
+            IsGrounded = false;
         }
 
         public void HandleGravity()
         {
             m_player.Top += m_currentJumpSpeed;
+
+            if (IsJumping && m_currentJumpForce > m_maxJumpForce)
+            {
+                IsJumping = false;
+            }
+
+            if (IsJumping)
+            {
+                m_currentJumpSpeed = -m_defaultJumpSpeed - 12;
+                m_currentJumpForce += m_increaseJumpForce;
+            }
 
             if (!IsJumping)
             {
@@ -68,6 +68,8 @@ namespace CGP_ENDLESSRUNNER
                 {
                     if (m_player.Bottom > x.Top)
                     {
+                        IsGrounded = true;
+
                         m_currentJumpForce = 0;
                         m_currentJumpSpeed = 0;
 

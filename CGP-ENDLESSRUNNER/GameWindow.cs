@@ -34,7 +34,8 @@ namespace CGP_ENDLESSRUNNER
 
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Space)
+            if (e.KeyCode == Keys.Space
+                && m_player.IsGrounded)
             {
                 OnPlayerJump?.Invoke(true);
             }

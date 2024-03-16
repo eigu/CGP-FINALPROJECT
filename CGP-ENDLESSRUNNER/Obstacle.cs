@@ -7,7 +7,7 @@ namespace CGP_ENDLESSRUNNER
     {
         private Form m_form;
 
-        private int m_defaultSpeed = 10;
+        private int m_defaultSpeed = 16;
         private int m_currentSpeed;
 
         Random random = new Random();
