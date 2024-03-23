@@ -73,19 +73,9 @@ namespace CGP_ENDLESSRUNNER.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap obstacle_1 {
+        internal static System.Drawing.Bitmap mouse {
             get {
-                object obj = ResourceManager.GetObject("obstacle-1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap obstacle_2 {
-            get {
-                object obj = ResourceManager.GetObject("obstacle-2", resourceCulture);
+                object obj = ResourceManager.GetObject("mouse", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CGP_ENDLESSRUNNER.exe" size="34776">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CGP_ENDLESSRUNNER.exe" size="38872">
       <assemblyIdentity name="CGP_ENDLESSRUNNER" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>8SpB2en2vMaRzPDEpYlduMdWl4JuqmHj8JuVcVdaArA=</dsig:DigestValue>
+        <dsig:DigestValue>zOxmfoDtfUcXI1e96FBQYdQcY59GfvPwdo1JG43T3jw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

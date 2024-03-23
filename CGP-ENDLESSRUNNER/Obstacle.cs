@@ -56,7 +56,7 @@ namespace CGP_ENDLESSRUNNER
             {
                 if (x is PictureBox && (string)x.Tag == "obstacle")
                 {
-                    x.Left = m_form.ClientSize.Width + random.Next(200, 600) + (x.Width * 50);
+                    x.Left = random.Next(200, 600) + (x.Width * 50);
                 }
             }
         }
